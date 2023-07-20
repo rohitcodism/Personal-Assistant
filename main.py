@@ -27,7 +27,7 @@ if __name__ == '__main__':
     text = takeCommand()
     while True:
         sites = [["YouTube", "https://youtube.com"], ["Google", "https://google.com"],
-                ["Linkedin", "https://linkedin.com"]]
+                 ["Linkedin", "https://linkedin.com"]]
         for site in sites:
             if f"Open {site[0]}".lower() in text.lower():
                 webbrowser.open(site[1])
