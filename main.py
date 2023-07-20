@@ -10,7 +10,7 @@ def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source, duration=0.4)
-        r.pause_threshold = 0.6
+        r.pause_threshold = 0.5
         audio = r.listen(source)
         try:
             query = r.recognize_google(audio, language="en-in")
