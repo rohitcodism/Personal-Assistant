@@ -17,7 +17,7 @@ def takeCommand():
             print(f"User said: {query}")
             return query
         except Exception as e:
-            return "Sorry can you repeat it again. I'm listening..."
+            return "Sorry can you repeat again. I'm listening..."
 
 
 if __name__ == '__main__':
