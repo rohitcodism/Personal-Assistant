@@ -3,6 +3,7 @@ import speech_recognition as sr
 import webbrowser
 import openai
 import os
+import datetime
 
 speaker = win32com.client.Dispatch("SAPI.Spvoice")
 
@@ -15,14 +16,14 @@ def takeCommand():
         audio = r.listen(source)
         try:
             query = r.recognize_google(audio, language="en-in")
-            print(f"User said: {query}")
+            print(f"You said: {query}")
             return query
         except Exception as e:
             return "Sorry can you repeat again. I'm listening..."
 
 
 if __name__ == '__main__':
-    speaker.Speak("Hello I'm Jarvis AI")
+    speaker.Speak("Hello I'm Jarvis")
     speaker.Speak("Listening")
     print("Listening...")
     text = takeCommand()
@@ -31,7 +32,8 @@ if __name__ == '__main__':
                  ["Linkedin", "https://linkedin.com"]]
         apps = [["Spotify", "C:\\Users\\user\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Spotify.lnk"],
                 ["Figma", "C:\\Users\\user\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Figma.lnk"],
-                ["Notion", "C:\\Users\\user\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Notion.lnk"]]
+                ["Notion", "C:\\Users\\user\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Notion.lnk"],
+                ["Code", "C:\\Users\\user\\OneDrive\\Desktop\\Visual Studio Code.lnk"]]
         for site in sites:
             if f"Open {site[0]}".lower() in text.lower():
                 webbrowser.open(site[1])
@@ -40,4 +42,7 @@ if __name__ == '__main__':
             if f"Open {app[0]}".lower() in text.lower():
                 os.startfile(f"{app[1]}")
                 speaker.Speak(f"Opening {app[0]}")
+        if "the time" in text:
+            strfTime = datetime.datetime.now().strftime("%H:%M:%S")
+            speaker.Speak(f"Okay now its {strfTime}")
         break
