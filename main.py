@@ -4,6 +4,7 @@ import webbrowser
 import openai
 import os
 import datetime
+from selenium import webdriver
 
 speaker = win32com.client.Dispatch("SAPI.Spvoice")
 
@@ -45,4 +46,11 @@ if __name__ == '__main__':
         if "the time" in text:
             strfTime = datetime.datetime.now().strftime("%H:%M:%S")
             speaker.Speak(f"Okay now its {strfTime}")
+        if "search" in text:
+            search_string = text
+            search_string = search_string.replace('','+')
+            browser = webdriver.Chrome()
+            for i in range(1):
+                browser.get('https://gooogle.com')
+                browser.find_element(search_string)
         break
